@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.pr14vmmybatis.dao.IProductDao">
+
+    <select id="list" resultType="org.example.pr14vmmybatis.dto.ProductDto">
+        SELECT * FROM product
+    </select>
+    <select id="findById" resultType="org.example.pr14vmmybatis.dto.ProductDto">
+        SELECT * FROM product WHERE product_id=#{ param1 } LIMIT 1
+    </select>
+    <select id="count" resultType="_int">
+        SELECT COUNT(*) FROM product
+     </select>
+    <insert id="insert" parameterType="org.example.pr14vmmybatis.dto.ProductDto">
+        INSERT INTO product values
+            (0, #{product_name}, #{product_price})
+    </insert>
+    <update id="update" parameterType="org.example.pr14vmmybatis.dto.ProductDto">
+        UPDATE product SET product_name=#{param2}, product_price=#{param3} WHERE product_id=#{ param1 }
+    </update>
+    <delete id="delete" >
+        DELETE from product WHERE product.product_id=#{ param1 }
+    </delete>
+
+</mapper>
